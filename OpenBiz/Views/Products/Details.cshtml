@@ -1,0 +1,102 @@
+﻿@model BLL.Entities.Inventory.Product
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h4 class="modal-title">Product</h4>
+</div>
+	<hr />
+	<div class="modal-body">
+	<div class="form-horizontal">
+		<div class="form-group">
+			@Html.LabelFor(model => model.Brand.BrandName, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Brand.BrandName, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Category.CategoryName, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Category.CategoryName, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.UnitOfMeasurement.Unit, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.UnitOfMeasurement.Unit, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.ProductName, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.ProductName, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.SKU, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.SKU, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.ProductBasePrice, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.ProductBasePrice, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.ProductDescription, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.ProductDescription, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Barcode, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Barcode, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+
+    <div class="form-group">
+      @Html.Label("Image", new { @class = "control-label col-sm-3" })
+
+      <div class="col-sm-9">
+        <img style="max-height:250px;max-width:200px;" class="img-responsive img-thumbnail" src="@Url.Content("~/Content/Images/ProductImages/"+@Model.ProductName+".png")" alt="@Model.ProductName" />
+      </div>
+
+    </div>
+
+</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-warning" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+      CKEDITOR.replace('ProductDescription');
+      value = $("#ProductDescription").val();
+      CKEDITOR.instances['ProductDescription'].setData(value);
+</script>
+

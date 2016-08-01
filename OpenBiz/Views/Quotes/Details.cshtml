@@ -1,0 +1,76 @@
+﻿@model BLL.Entities.Procurement.Quote
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h4 class="modal-title">Quote</h4>
+</div>
+	<hr />
+	<div class="modal-body">
+	<div class="form-horizontal">
+		<div class="form-group">
+			@Html.LabelFor(model => model.BuyingTerms.Title, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.BuyingTerms.Title, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.RFQ.CreatedBy, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.RFQ.CreatedBy, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.QuoteDescription, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.QuoteDescription, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.QuotationDate, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.QuotationDate, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.MaterialID, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.MaterialID, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.TotalCharges, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.TotalCharges, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+
+</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-warning" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+      CKEDITOR.replace('QuoteDescription');
+      value = $("#QuoteDescription").val();
+      CKEDITOR.instances['QuoteDescription'].setData(value);
+</script>

@@ -1,0 +1,101 @@
+﻿@model BLL.Entities.Procurement.SupplierAddress
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 class="modal-title">Edit</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+
+    <div class="form-horizontal">
+        <h4>SupplierAddress</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div id="suggestionContainerId" class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressTypeID, "AddressTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AddressTypeID, (SelectList)ViewData["AddressTypeID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.AddressTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierID, "SupplierID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SupplierID, (SelectList)ViewData["SupplierID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+        <div class="modal-footer">
+        <span id="progress" class="text-center" style="display: none;">
+            <img src="~/Content/Images/wait.gif" alt="wiat" />
+            Wait..
+        </span>
+
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+
+    <script>
+    $("form").removeData("validator");
+    $("form").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("form");
+      function loadMapScenario() {
+        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+          callback: onLoad,
+          errorCallback: onError,
+          credentials: 'AuNo0ua6zrRvgLwcdno9_uWwLYCvf9P_Zrkjre-nbMdBLkTSVErufi5hbzQZgHx2'
+        });
+        function onLoad() {
+          var options = { maxResults: 5 };
+          var manager = new Microsoft.Maps.AutosuggestManager(options);
+          manager.attachAutosuggest('#Address', '#suggestionContainerId', selectedSuggestion);
+        }
+        function onError(message) {
+          document.getElementById('Address').value = message;
+        }
+        function selectedSuggestion(suggestionResult) {
+          document.getElementById('Address').value =
+                'Suggestion: ' + suggestionResult.formattedSuggestion +
+                    '<br> Lat: ' + suggestionResult.location.latitude +
+                    '<br> Lon: ' + suggestionResult.location.longitude;
+
+          document.getElementById('Latitude').value = suggestionResult.location.latitude;
+          document.getElementById('Longitude').value = suggestionResult.location.longitude;
+        }
+
+      }
+    </script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?branch=release&callback=loadMapScenario' async defer></script>
+}
+
+

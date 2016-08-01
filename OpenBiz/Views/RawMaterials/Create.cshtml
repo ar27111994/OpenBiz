@@ -1,0 +1,109 @@
+﻿@model BLL.Entities.Inventory.RawMaterial
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 class="modal-title">Create</h2>
+</div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+
+    <div class="form-horizontal">
+        <h4>RawMaterial</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaterialName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaterialName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaterialName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manufacturer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Manufacturer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupplierID, "SupplierID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SupplierID, (SelectList)ViewData["SupplierID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaterialPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaterialPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaterialPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Barcode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Barcode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Barcode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitOfMeasurementID, "UnitOfMeasurementID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.UnitOfMeasurementID, (SelectList)ViewData["UnitOfMeasurementID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.UnitOfMeasurementID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      <div class="form-group">
+        @Html.Label("ProductImage", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          <div class="input-group image-preview">
+            <input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+            <span class="input-group-btn">
+              <!-- image-preview-clear button -->
+              <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                <span class="glyphicon glyphicon-remove"></span> Clear
+              </button>
+              <!-- image-preview-input -->
+              <div class="btn btn-default image-preview-input">
+                <span class="glyphicon glyphicon-folder-open"></span>
+                <span class="image-preview-input-title">Browse</span>
+                <input type="file" data-val="true" data-val-required="The Image field is required." accept="image/png, image/jpeg, image/gif" name="upload" /> <!-- rename it -->
+                <span class="text-danger field-validation-valid" data-valmsg-for="upload" data-valmsg-replace="true"></span>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
+        <div class="modal-footer">
+        <span id="progress" class="text-center" style="display: none;">
+            <img src="~/Content/Images/wait.gif" alt="wiat" />
+            Wait..
+        </span>
+
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+
+    <script>
+      $("form").removeData("validator");
+      $("form").removeData("unobtrusiveValidation");
+      $.validator.unobtrusive.parse("form");
+    </script>
+    <script src="@Url.Content("~/Content/FrontEnd/custom-scripts/image-preview.js")"></script>
+}

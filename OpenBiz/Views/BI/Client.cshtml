@@ -1,0 +1,11 @@
+﻿<div id="OlapClient" style="overflow: auto"> </div>
+<script type="text/javascript">
+                //Setting property and initializing ejOlapClient widget.
+                $(function()
+                {
+                    $("#OlapClient").ejOlapClient(
+                    {
+                        url: "@Url.Content("BusinessIntelligence")",title: "OLAP Browser"
+                    });
+                });
+</script>

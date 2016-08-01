@@ -1,0 +1,94 @@
+﻿
+@model SCMS.ViewModels.PagedList<BLL.Entities.Inventory.MaterialTaxes>
+
+@{
+	Layout = null;
+}
+@{
+			var grid = new WebGrid(
+						canPage: true,
+						rowsPerPage: Model.PageSize,
+						canSort: true,
+						ajaxUpdateContainerId: "grid");
+
+			grid.Bind(Model.Content, rowCount: Model.TotalRecords, autoSortAndPage: false);
+			grid.Pager(WebGridPagerModes.All);
+			@MvcHtmlString.Create(
+			@grid.GetHtml(htmlAttributes: new { id = "grid" },   // id for ajaxUpdateContainerId parameter
+			fillEmptyRows: false,
+			tableStyle: "table table-bordered table-hover",
+			mode: WebGridPagerModes.All,
+			columns: grid.Columns(grid.Column(header:"{CheckBoxHeading}", format:@<text>
+													  @Html.Raw("<input type='checkbox' class='chkbx ids' value='" + item.Id + "' name='ids'>")
+													  </text>, style: "text-center", canSort: false),
+											grid.Column("Material.MaterialName",Html.DisplayNameFor(model => model.Content.ElementAtOrDefault(0).Material.MaterialName).ToString()),
+												grid.Column("Tax.Name",Html.DisplayNameFor(model => model.Content.ElementAtOrDefault(0).Tax.Name).ToString()),
+							  grid.Column(header: "Action", canSort: false, style: "action",
+				format: @<text>
+				   @Html.Raw("<a data-modal='' href='"+@Url.Action("Details", new {id=item.Id})+"' id='" + item.Id + "' title='Detail'> <i class='glyphicon glyphicon-search'> </i> </a>")
+				   @Html.Raw("<a data-modal='' href='"+@Url.Action("Edit", new {id=item.Id})+"' id='" + item.Id + "' title='Edit'> <i class='glyphicon glyphicon-edit'> </i> </a>")
+				   @Html.Raw("<a data-modal='' href='"+@Url.Action("Delete", new {id=item.Id})+"' id='" + item.Id + "' title='Delete'> <i class='glyphicon glyphicon-trash'> </i> </a>")
+				</text>)
+
+			)).ToString()
+			.Replace("{CheckBoxHeading}", "<div class='text-center'><input class='chkbx' type='checkbox' id='allBox'/></div>")
+			);
+			}
+@using (Html.BeginForm("Export", ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post))
+{
+	<div class="modal fade export-dialog">
+	  <div class="modal-dialog modal-sm">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Export</h4>
+		  </div>
+		  <div class="modal-body">
+			<div class="container-fluid">
+			  <div class="row">
+				@Html.Hidden("CurrentPage", grid.PageIndex+1)
+				@Html.Hidden("RowsPerPage", grid.RowsPerPage)
+				@Html.Hidden("PagingEnabled", grid.PageCount > 1)
+				<div class="col-md-3">Range:</div>
+				<div class="col-md-9">
+				  <div class="radio">
+					<label>
+					  <input type="radio" name="pageOptions" id="pageCurrent" value="pageCurrent" checked>
+					  Current Page
+					</label>
+				  </div>
+				  <div class="radio">
+					<label>
+					  <input type="radio" name="pageOptions" id="pageAll" value="pageAll">
+					  All
+					</label>
+				  </div>
+				</div>
+			  </div>
+			  <div class="row">
+				<div class="col-md-3">Output:</div>
+				<div class="col-md-9">
+				  <div class="radio">
+					<label>
+					  <input type="radio" name="exportType" id="exportExcel" value="exportExcel" checked>
+					  Excel
+					</label>
+				  </div>
+				  <div class="radio">
+					<label>
+					  <input type="radio" name="exportType" id="exportCsv" value="exportCsv">
+					  Csv
+					</label>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary">Export</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+}

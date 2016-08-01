@@ -1,0 +1,94 @@
+﻿@model BLL.Entities.Procurement.Quote
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 class="modal-title">Edit</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+
+    <div class="form-horizontal">
+        <h4>Quote</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuoteDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuoteDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuoteDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuotationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuotationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuotationDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaterialID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaterialID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaterialID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RFQID, "RFQID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RFQID, (SelectList)ViewData["RFQID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.RFQID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentTermID, "PaymentTermID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PaymentTermID, (SelectList)ViewData["PaymentTermID"], htmlAttributes: new { @class = "form-control", @data_live_search="true" })
+                @Html.ValidationMessageFor(model => model.PaymentTermID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalCharges, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalCharges, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalCharges, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</div>
+        <div class="modal-footer">
+        <span id="progress" class="text-center" style="display: none;">
+            <img src="~/Content/Images/wait.gif" alt="wiat" />
+            Wait..
+        </span>
+
+        <input class="btn btn-primary" type="submit" value="Save" />
+        <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+
+<script>
+  CKEDITOR.replace('QuoteDescription');
+  value = $("#QuoteDescription").val();
+  CKEDITOR.instances['QuoteDescription'].setData(value);
+
+    $("form").removeData("validator");
+    $("form").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("form");
+</script>
+}
+
+

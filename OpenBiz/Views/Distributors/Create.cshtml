@@ -1,0 +1,59 @@
+﻿@model BLL.Entities.Distribution.Distributor
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    @using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-body">
+    
+        <div class="form-horizontal">
+            <h4>Distributor</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+        </div>
+    </div>
+            <div class="modal-footer">
+            <span id="progress" class="text-center" style="display: none;">
+                <img src="~/Content/Images/wait.gif" alt="wiat" />
+                Wait..
+            </span>
+    
+            <input class="btn btn-primary" type="submit" value="Save" />
+            <button class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+    
+    <script>
+        $("form").removeData("validator");
+        $("form").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse("form");
+    </script>
+    }
+</body>
+</html>

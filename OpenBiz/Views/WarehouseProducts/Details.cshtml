@@ -1,0 +1,71 @@
+﻿@model BLL.Entities.Warehouse.WarehouseProducts
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h4 class="modal-title">WarehouseProducts</h4>
+</div>
+	<hr />
+	<div class="modal-body">
+	<div class="form-horizontal">
+		<div class="form-group">
+			@Html.LabelFor(model => model.Product.ProductName, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Product.ProductName, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Warehouse.WarehouseName, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Warehouse.WarehouseName, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.EntryTitle, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.EntryTitle, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Purpose, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Purpose, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.Quantity, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.Quantity, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.PostingTime, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.PostingTime, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+
+</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-warning" data-dismiss="modal">Close</button>
+</div>
+

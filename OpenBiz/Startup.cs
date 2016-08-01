@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(OpenBiz.Startup))]
-namespace OpenBiz
+[assembly: OwinStartupAttribute(typeof(SCMS.Startup))]
+namespace SCMS
 {
     public partial class Startup
     {

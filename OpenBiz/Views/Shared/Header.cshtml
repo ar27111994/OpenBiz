@@ -1,0 +1,103 @@
+﻿<nav class="navbar navbar-default navbar-pf" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="@Url.Action("Index","Dashboard")" style="text-transform:uppercase">
+      <strong style="letter-spacing:8px">OpenBiz</strong> Supply Chain Management System
+    </a>
+  </div>
+  <div class="collapse navbar-collapse navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-utility">
+      <li>
+        <a href="#">Status</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="pficon pficon-user"></span>
+          @User.Identity.Name <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Link</a>
+          </li>
+          <li>
+            <a href="#">Another link</a>
+          </li>
+          <li>
+            <a href="#">Something else here</a>
+          </li>
+          <li class="divider"></li>
+          <li class="dropdown-submenu">
+            <a tabindex="-1" href="#">More options</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Link</a>
+              </li>
+              <li>
+                <a href="#">Another link</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#">Sign Out</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-primary">
+      <li id="navbar-primary-item1">
+        <a href="@Url.Action("Inventory","Dashboard")"><i class="fa fa-barcode"></i> Inventory</a>
+      </li>
+      <li id="navbar-primary-item2">
+        <a href="@Url.Action("Index","Warehouses")"><i class="fa fa-building-o"></i> Warehouses</a>
+      </li>
+      <li id="navbar-primary-item3">
+        <a href="@Url.Action("Index","Contracts")"><i class="fa fa-buysellads"></i> Procurement</a>
+      </li>
+      <li id="navbar-primary-item4">
+        <a href="@Url.Action("Index","Plants")" class="active"><i class="fa fa-money"></i> Payment</a>
+      </li>
+      <li id="navbar-primary-item5">
+        <a href="@Url.Action("Index","Plants")"><i class="fa fa-puzzle-piece"></i> Manufacturing</a>
+      </li>
+      <li id="navbar-primary-item6">
+        <a href="tab.html"><i class="fa fa-shopping-cart"></i> Orders</a>
+      </li>
+      <li id="navbar-primary-item7">
+        <a href="typography-2.html"><i class="fa fa-truck"></i> Distribution</a>
+      </li>
+      <li id="navbar-primary-item8">
+        <a href="cards.html"><i class="fa fa-users"></i> Retail Orders</a>
+      </li>
+      <li id="navbar-primary-item9">
+        <a href="cards.html"><i class="fa fa-ship"></i> Transportation</a>
+      </li>
+      <li id="navbar-primary-item10">
+        <a href="cards.html"><i class="fa fa-bar-chart-o"></i> Forecasting</a>
+      </li>
+      <li id="navbar-primary-item11">
+        <a href="cards.html"><i class="fa fa-arrow-circle-o-left"></i> Returns</a>
+      </li>
+      <li id="navbar-primary-item12">
+        <a href="cards.html"><i class="fa fa-wrench"></i> Settings</a>
+      </li>
+    </ul>
+  </div>
+</nav>

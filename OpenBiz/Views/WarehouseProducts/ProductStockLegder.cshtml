@@ -1,0 +1,150 @@
+﻿@model IEnumerable<BLL.Entities.Warehouse.WarehouseProducts>
+@{
+    ViewBag.Title = "MaterialStockLegder";
+    Layout = "~/Views/Shared/_WarehouseLayout.cshtml";
+}
+
+<h2>Material Stock Legder</h2>
+
+<div class="span12">
+  <table class="table table-striped table-condensed table-bordered" id="datatab">
+    <thead>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.EntryTitle)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.EntryType)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Warehouse.WarehouseName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Purpose)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.PostingTime)
+        </th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.EntryTitle)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.EntryType)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Warehouse.WarehouseName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Purpose)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.PostingTime)
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+@section Scripts{
+  <script>
+    function dtConvFromJSON(data)
+    {
+      if (data == null) return '1/1/1950';
+      var r = /\/Date\(([0-9]+)\)\//gi
+      var matches = data.match(r);	
+      if (matches == null) return '1/1/1950';
+      var result = matches.toString().substring(6,19);
+      var epochMilliseconds = result.replace(
+      /^\/Date\(([0-9]+)([+-][0-9]{4})?\)\/$/,
+      '$1');
+      var b = new Date(parseInt(epochMilliseconds));
+      var c = new Date(b.toString());
+      var curr_date = c.getDate();
+      var curr_month = c.getMonth() + 1;
+      var curr_year = c.getFullYear();
+      var curr_h = c.getHours();
+      var curr_m = c.getMinutes();
+      var curr_s = c.getSeconds();
+      var curr_offset = c.getTimezoneOffset()/60
+      var d = curr_month.toString() + '/' + curr_date + '/' + curr_year + " " + curr_h + ':' + curr_m + ':' + curr_s;
+      return d;
+    }
+
+
+    $(document).ready(function () {
+
+      $('#datatab tfoot th').each(function () {
+        $(this).html('<input type="text" />');
+      });
+
+      var oTable = $('#datatab').DataTable({
+        "serverSide": true,
+        "ajax": {
+          "type": "POST",
+          "url": '@Url.Action("DataHandler")',
+          "contentType": 'application/json; charset=utf-8',
+          'data': function (data) { return data = JSON.stringify(data); }
+        },
+        "dom": 'BfrtiS',
+        buttons: [
+       {
+         extend: 'copy',
+         text: 'Copy to clipboard'
+       },
+       'csv', 'excel', 'pdf', 'print'
+        ],
+        "scrollY": 500,
+        "scrollX": true,
+        "scrollCollapse": true,
+        "scroller": {
+          loadingIndicator: false
+        },
+        "processing": true,
+        "paging": true,
+        "deferRender": true,
+        "columns": [
+       { "data": "EntryTitle" },
+       { "data": "EntryType" },
+       { "data": "Warehouse.WarehouseName", "orderable": false },
+       { "data": "Product.ProductName", "orderable": false },
+       { "data": "Purpose" },
+       { "data": "Quantity" },
+       { "data": "PostingTime",
+       render: function (data, type, full) { return dtConvFromJSON(data); }
+       }
+        ],
+        "order": [0, "asc"]
+
+      });
+
+      oTable.columns().every(function () {
+        var that = this;
+
+        $('input', this.footer()).on('keyup change', function () {
+          that
+              .search(this.value)
+              .draw();
+        });
+      });
+
+    });
+  </script>
+  @Scripts.Render("~/bundles/dtExport");
+}

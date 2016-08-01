@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using OpenBiz.Models;
+using SCMS.Models;
 
-namespace OpenBiz.Controllers
+namespace SCMS.Controllers
 {
     [Authorize]
     public class ManageController : Controller

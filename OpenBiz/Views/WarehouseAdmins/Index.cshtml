@@ -1,0 +1,75 @@
+﻿@model SCMS.ViewModels.PagedList<BLL.Entities.Warehouse.WarehouseAdmin>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_WarehouseLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+		<div class="row" id="grid-search">
+		@using (Ajax.BeginForm("Grid", new AjaxOptions
+		  {
+			HttpMethod = "GET",
+			InsertionMode = InsertionMode.Replace,
+			UpdateTargetId = "web-grid"
+		  }))
+		  {
+			  <div class="col-sm-8">
+				<div class="input-group">
+
+				  <input type="text"
+						 name="filter"
+						 class="form-control"
+						 id="grid-search-box"
+						 placeholder="Search" />
+				  <span class="input-group-btn">
+					<button class="btn btn-default" type="submit">Go</button>
+				  </span>
+
+				</div>
+			  </div>
+		  }
+  <div class="pull-right btn-group inline col-lg-3" style="float:right;">
+	<a class="btn btn-danger" id="del" style="display:none;" href="@Url.Action("DeleteSelected")">
+	  Delete <i class="glyphicon glyphicon-minus"></i>
+	</a>
+	<a class="btn btn-default" id="btnExport" style="margin-left:4px;" href="#" data-toggle="modal" data-target=".export-dialog">
+	  Export <i class="glyphicon glyphicon-export"></i>
+	</a>
+	<a class="btn btn-success" style="margin-left:4px;" data-modal="" href="@Url.Action("Create")">
+	  Create New <i class="glyphicon glyphicon-plus"></i>
+	</a>
+  </div>
+</div>
+
+<div id="web-grid" class="table table-striped"></div>
+
+ 
+			
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div id='myModalContent'></div>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+	<script>
+		$(document).ready(function() {
+		  $.get("@Url.Action("Grid")", function (data) {
+			$('#web-grid').html(data);
+		  });
+		});
+	  function reloadGrid() {
+		$.get("@Url.Action("Grid")", function (data) {
+		  $('#web-grid').html(data);
+		});
+		}
+	</script>
+	@Scripts.Render("~/bundles/custom")
+}
+

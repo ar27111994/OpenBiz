@@ -1,0 +1,43 @@
+﻿<footer class="panel-footer">
+  <p>&copy; @DateTime.Now.Year - Copyright OpenBiz</p>
+
+  @*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCidcc1A_arh6jjwEae2RMDL23kNvMdCUM&signed_in=true&libraries=places&callback=initMap"
+          async defer></script>*@
+
+  <script>
+    
+
+    
+      var selector = '.navbar-primary li';
+      $(selector).on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        var primaryMenuId = $(this).prop("id");
+        localStorage.setItem('SelectedPrimaryMenu', primaryMenuId);
+      });
+      var selector2 = '.nav-stacked li';
+      $(selector2).on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active');
+        var secondaryMenuId = $(this).prop("id");
+        localStorage.setItem('SelectedSecondaryMenu', secondaryMenuId);
+      });
+      </script>
+
+  <script>
+    
+    var activeMenuLocalStorage = localStorage.getItem('SelectedPrimaryMenu');
+    var activeMenuLocalStorage2 = localStorage.getItem('SelectedSecondaryMenu');
+    $(document).ready(function () {
+        if ((activeMenuLocalStorage)) {
+
+            $('#' + activeMenuLocalStorage).attr('class', 'active');
+
+        }
+        if ((activeMenuLocalStorage2)) {
+
+          $('#' + activeMenuLocalStorage2).attr('class', 'active');
+
+        }
+    });
+  </script>
+
+</footer>

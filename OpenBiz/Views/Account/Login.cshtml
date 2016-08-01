@@ -1,63 +1,66 @@
-﻿@using OpenBiz.Models
+﻿@using BLL.Entities.UserAccounts
 @model LoginViewModel
 @{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<span id="badge">
+  <img src="~/Content/Images/logo.svg" alt="PatternFly logo" />
+</span>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="brand">
+        <h2 style="color:#ffffff;width:100%;text-transform:uppercase;font-family:Arial;font-size:x-large"><strong style="letter-spacing:8px">OpenBiz</strong> Supply Chain Management System</h2>
+      </div>
+    </div>
+
+
+    <div class="col-sm-7 col-md-6 col-lg-5 login">
+      @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "index" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          @Html.AntiForgeryToken()
+
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-sm-2 col-md-2 control-label" })
+            <div class="col-sm-10 col-md-10">
+              @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter Email" })
+              @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+          </div>
+          <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-sm-2 col-md-2 control-label" })
+            <div class="col-sm-10 col-md-10">
+              @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter Password" })
+              @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+          </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                  <div class="col-xs-8 col-sm-offset-2 col-sm-6 col-md-offset-2 col-md-6">
+                    <div class="checkbox">
+                      @Html.CheckBoxFor(m => m.RememberMe)
+                      @Html.LabelFor(m => m.RememberMe)
                     </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 submit">
+                  <button type="submit" class="btn btn-primary btn-lg" tabindex="4">Log In</button>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+      }
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+
+    <div style="background:rgba(0, 0, 0, 0.21);" class="col-sm-5 col-md-6 col-lg-7 details">
+      <p>
+        <strong>Welcome to OpenBiz!</strong>
+        This is an open source supply chain management system. Please enter your login details to continue.
+      </p>
     </div>
+
+  </div>
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/jqueryval")
 }

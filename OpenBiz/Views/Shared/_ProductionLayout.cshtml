@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="@Url.Action("Index","Plants")"><i class="fa fa-building"></i> Plants</a></li>
+  <li><a href="@Url.Action("Index","ProductionPlans")"><i class="fa fa-puzzle-piece"></i> Production Plans</a></li>
+  <li><a href="@Url.Action("Kanban","ProductionPlans")"><i class="fa fa-calendar"></i> Kanban View</a></li>
+  <li><a href="@Url.Action("Map","Plants")"><i class="fa fa-map-marker"></i> Plants Map</a></li>
+</ul>
+<div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+  @RenderBody()
+</div>
+
+
+@section Scripts{
+  @RenderSection("Scripts", false)
+}
+
+
+
+
+@section ChartScripts{
+  @RenderSection("ChartScripts", false)
+}
+
+

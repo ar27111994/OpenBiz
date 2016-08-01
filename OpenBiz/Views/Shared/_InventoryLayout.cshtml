@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+  @RenderBody()
+</div>
+
+<div class="col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left">
+  <div class="nav-category">
+    <ul class="nav nav-pills nav-stacked">
+      <li id="navbar-seconday-item1"><a href="@Url.Action("Inventory","Dashboard")"><i class="fa fa-dashboard"></i>Inventory Dashboard</a></li>
+      <li id="navbar-seconday-item2"><a href="@Url.Action("Index","Products")"><i class="fa fa-barcode"></i>Products</a></li>
+      <li id="navbar-seconday-item3"><a href="@Url.Action("Index","ProductCategories")"><i class="fa fa-cog"></i>Product Categories</a></li>
+      <li id="navbar-seconday-item5"><a href="@Url.Action("Index","Parts")"><i class="fa fa-puzzle-piece"></i>Product Parts</a></li>
+      <li id="navbar-seconday-item6"><a href="@Url.Action("Index","RawMaterials")"><i class="fa fa-cogs"></i>Raw Materials</a></li>
+      <li id="navbar-seconday-item7"><a href="@Url.Action("Index","Brands")"><i class="fa fa-tags"></i>Brands</a></li>
+      <li id="navbar-seconday-item8"><a href="@Url.Action("Index","Taxes")"><i class="fa fa-money"></i>Taxes</a></li>
+      <li id="navbar-seconday-item9"><a href="@Url.Action("Index","UnitsOfMeasurement")"><i class="fa fa-balance-scale"></i>Units Of Measurement</a></li>
+      <li id="navbar-seconday-item10"><a href="@Url.Action("Index","Attributes")"><i class="fa fa-area-chart"></i>Product Variations / Attributes</a></li>
+      <li id="navbar-seconday-item11"><a href="@Url.Action("Index","AttributeValues")"><i class="fa fa-line-chart"></i>Variation Possible Values</a></li>
+      <li id="navbar-seconday-item12"><a href="@Url.Action("Index","ProductTaxes")"><i class="fa fa-arrow-right"></i>Product Taxes</a></li>
+      <li id="navbar-seconday-item13"><a href="@Url.Action("Index","MaterialTaxes")"><i class="fa fa-arrow-left"></i>Raw Material Taxes</a></li>
+    </ul>
+  </div>
+</div>
+
+@section Scripts{
+  @RenderSection("Scripts", false)
+}
+
+
+
+
+@section ChartScripts{
+  @RenderSection("ChartScripts", false)
+}

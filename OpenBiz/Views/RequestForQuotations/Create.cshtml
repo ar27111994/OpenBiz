@@ -1,0 +1,106 @@
+﻿@model BLL.Entities.Procurement.RequestForQuotation
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h2 class="modal-title">Create</h2>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+
+      <div class="form-horizontal">
+        <h4>RequestForQuotation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+          @Html.Label("Select Suppliers (Multiple)", htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.DropDownList("Suppliers", (SelectList)ViewData["Suppliers"], htmlAttributes: new { @class = "form-control", @data_val = "true", @data_val_required = "Please Select Atleast one Supplier.", multiple = "multiple", data_actions_Bbox = "true" })
+            <span class="text-danger field-validation-valid" data-valmsg-for="Suppliers" data-valmsg-replace="true"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.Label("Please add items to your Request", htmlAttributes: new { @class = "control-label col-md-2", @style = "width: 100%;text-align:center" })
+          <div id="outer-div">
+            <div id="inner-div">
+              <div id="itemslist">
+                <div class="col-md-5">
+                  @Html.DropDownList("Items", (SelectList)ViewData["Items"], htmlAttributes: new { @class = "form-control", @data_val = "true", @data_val_required = "Please Select Atleast one Item.", data_live_search = "true" })
+                  <span class="text-danger field-validation-valid" data-valmsg-for="Items" data-valmsg-replace="true"></span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                
+                  <input type="number" class="form-control" data-val="true" min="1" data-val-required="The Quantity field is required." name="Quantity" />
+                  <span class="text-danger field-validation-valid" data-valmsg-for="Quantity" data-valmsg-replace="true"></span>
+
+              </div>
+              <a class="btn btn-success col-md-3" id="addField"><i class="fa fa-plus"></i> Add another item</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.ScheduledDate, htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.EditorFor(model => model.ScheduledDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ScheduledDate, "", new { @class = "text-danger" })
+          </div>
+        </div>
+
+        <div class="form-group">
+          @Html.LabelFor(model => model.PaymentTermID, "PaymentTermID", htmlAttributes: new { @class = "control-label col-md-2" })
+          <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PaymentTermID, (SelectList)ViewData["PaymentTermID"], htmlAttributes: new { @class = "form-control", @data_live_search = "true" })
+            @Html.ValidationMessageFor(model => model.PaymentTermID, "", new { @class = "text-danger" })
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span id="progress" class="text-center" style="display: none;">
+        <img src="~/Content/Images/wait.gif" alt="wiat" />
+        Wait..
+      </span>
+
+      <input class="btn btn-primary" type="submit" value="Save" />
+      <button class="btn btn-warning" data-dismiss="modal">Close</button>
+    </div>
+
+    <script>
+      $(function () {
+        var itemsDiv = $('#outer-div');
+        var i = $('#outer-div').length + 1;
+
+        $('#addField').click(function () {
+          var s = '<div id="inner-div"><div class="col-md-5">';
+          @*var s1 = '@Html.Raw(@Html.DropDownList("Items", (SelectList)ViewData["Items"], htmlAttributes: new { @class = "form-control input-sm", data_width = "50%", @data_val = "true", @data_val_required = "Please Select Atleast one Item.", data_live_search = "true" }).ToString())';*@
+          var s2='<span class="text-danger field-validation-valid" data-valmsg-for="Items" data-valmsg-replace="true"></span></div><div class="col-md-3"><input type="number" class="form-control" data-val="true" min="1" data-val-required="The Quantity field is required." name="Quantity" /><span class="text-danger field-validation-valid" data-valmsg-for="Quantity" data-valmsg-replace="true"></span></div><a class="btn btn-danger col-md-3" id="remField"><i class="fa fa-minus"></i> Remove item</a></div>';
+          $(s + $("#itemslist").html() + s2).appendTo(itemsDiv);
+          i++;
+          return false;
+        });
+
+        $('#outer-div').on('click', '#remField', (function (e) {
+          if (i > 2) {
+            $('#remField').parents('div#inner-div').remove();
+            i--;
+          }
+          return false;
+
+        }));
+      });
+      $("form").removeData("validator");
+      $("form").removeData("unobtrusiveValidation");
+      $.validator.unobtrusive.parse("form");
+    </script>
+}

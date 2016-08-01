@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html class="login-pf">
+@{
+    Html.RenderPartial("DocumentHead");
+}
+<body style="width:100%; background:url(@Url.Content("~/Content/Images/Businessman.jpg")); background-size:cover">
+  @RenderBody()
+
+  @{
+      @Scripts.Render("~/bundles/jquery")
+      @Scripts.Render("~/bundles/patternfly")
+      @Scripts.Render("~/bundles/bootstrap")
+      @RenderSection("Scripts", required: false);
+  }
+
+</body>
+</html>

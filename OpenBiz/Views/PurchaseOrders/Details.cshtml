@@ -1,0 +1,47 @@
+﻿@model BLL.Entities.Procurement.PurchaseOrder
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h4 class="modal-title">PurchaseOrder</h4>
+</div>
+	<hr />
+	<div class="modal-body">
+	<div class="form-horizontal">
+		<div class="form-group">
+			@Html.LabelFor(model => model.QuoteID, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.QuoteID, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.OrderDate, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.OrderDate, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(model => model.WarehouseID, new { @class = "control-label col-sm-3" })
+
+		<div class="col-sm-9">
+			@Html.TextBoxFor(model => model.WarehouseID, new { @class = "form-control required", @disabled = "disabled"})
+		</div>
+		
+		</div>
+
+</div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-warning" data-dismiss="modal">Close</button>
+</div>
+
