@@ -39,7 +39,7 @@
   "homepage": "http://www.virtuosoft.eu/code/bootstrap-touchspin/",
   "version": "3.0.1",
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~1.6.1",
     "grunt-cli": "~0.1.13",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-concat": "~0.3.0",
