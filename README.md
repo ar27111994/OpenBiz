@@ -70,83 +70,6 @@ The system is built using a modular approach and follows the Iterative Waterfall
    ```bash
    git clone https://github.com/ar27111994/OpenBiz.git
    ```
-Certainly! Here is a complete README.md draft for your OpenBiz repository, based on your documentation and standard open source best practices.
-
----
-
-```markdown
-# OpenBiz (OpenBizz)
-
-An Open Source and Intelligently Built Supply Chain Management System.
-
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [System Architecture](#system-architecture)
-- [Installation & Requirements](#installation--requirements)
-- [Usage Guide](#usage-guide)
-- [Contributing](#contributing)
-- [Testing](#testing)
-- [License](#license)
-- [Acknowledgment](#acknowledgment)
-- [References](#references)
-
----
-
-## Project Overview
-
-OpenBiz (OpenBizz) is a web-based Supply Chain Management System (SCMS) designed to integrate both upstream and downstream supply chains using open standards and technologies. It provides a customizable solution for small and medium-sized enterprises (SMEs) to manage procurement, inventory, sales, and logistics efficiently.
-
-The system allows administrators to manage the supply chain via a web interface, while customers and suppliers can interact with the system through web services, enabling seamless order placement and invoice management without directly accessing the platform. Additionally, an Android sub-system supports warehouse operations, including barcode scanning for real-time inventory management.
-
----
-
-## Features
-
-- **User Registration & Authentication:** Secure registration and login for multiple user roles (admin, supplier, customer).
-- **Procurement Management:** Enables purchasing, sourcing, and replenishment of goods.
-- **Inventory Management:** Real-time tracking and updating of stock levels across warehouses.
-- **Order Processing:** Place, approve, ship, and track orders with payment processing integration.
-- **Collaboration Tools:** Facilitate communication and coordination among supply chain stakeholders.
-- **Role-Based Access Control:** Ensures only authorized users can make system changes.
-- **Web Service Integration:** Allows external systems to interact and automate supply chain operations.
-- **Warehouse Management:** Barcode scanning and mobile access for warehouse staff.
-- **Reporting & Analytics:** *(Planned)* Insights into supply chain efficiency, sales, and inventory.
-
----
-
-## System Architecture
-
-The system is built using a modular approach and follows the Iterative Waterfall software development methodology. Main technologies include:
-
-- **Backend:** .NET (C#), SQL Server
-- **Frontend:** JavaScript, LESS, HTML, CSS
-- **Mobile:** Android (for warehouse module)
-- **Web Services:** RESTful APIs for integration with customers and suppliers
-
-> For diagrams (Use Case, Class, Sequence, Activity, Collaboration, Deployment), see `/docs` or project documentation.
-
----
-
-## Installation & Requirements
-
-**Development Requirements**
-
-- **Operating System:** Windows 7 or above
-- **IDE:** Visual Studio 2015 or newer
-- **Database:** SQL Server
-- **.NET Framework:** (As required by project)
-- **Hardware:** 1.6 GHz+ CPU, 1 GB+ RAM, 4 GB+ free disk space
-
-**Running the Application**
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ar27111994/OpenBiz.git
-   ```
 2. Open the solution in Visual Studio.
 3. Configure your SQL Server database (see connection strings in the code).
 4. Build and run the application.
@@ -205,7 +128,7 @@ This project is licensed under the [MIT License](LICENSE) or as specified by the
 
 Dedicated to our beloved parents and everyone whose prayers and support paved the way for our success.
 
-Special thanks to our supervisor Mr. Saqib Subhan, all faculty members of the UIIT department, and volunteers who helped during development and testing.
+Special thanks to our supervisor, Mr. Saqib Subhan, all faculty members of the UIIT department, and volunteers who helped during development and testing.
 
 ---
 
