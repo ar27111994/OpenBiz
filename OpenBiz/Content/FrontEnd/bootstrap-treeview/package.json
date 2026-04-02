@@ -34,7 +34,7 @@
   "dependencies": {
     "express": "5.1.x",
     "ejs": "3.1.x",
-    "phantomjs": "1.9.x"
+    "phantomjs": "2.1.x"
   },
   "devDependencies": {
     "bower": "1.8.x",
